@@ -64,6 +64,7 @@ class _WelcomeMenuPageState extends State<WelcomeMenuPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Retro Shop'),
+        backgroundColor: Colors.green,
         actions: [
           IconButton(
             icon: const Icon(Icons.exit_to_app),

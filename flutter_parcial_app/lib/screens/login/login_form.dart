@@ -24,7 +24,7 @@ class _LoginFormState extends State<LoginForm> {
     final String username = _usernameController.text.trim();
     final String password = _passwordController.text.trim();
 
-    const String apiUrl = 'http://192.168.128.5:3000/login'; // Cambiar por la dirección de tu API
+    const String apiUrl = 'http://192.168.128.5:3000/login';
 
     try {
       final response = await http.post(
@@ -74,16 +74,24 @@ class _LoginFormState extends State<LoginForm> {
       children: [
         TextField(
           controller: _usernameController,
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
             labelText: 'Nombre de usuario',
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            prefixIcon: const Icon(Icons.person),
           ),
         ),
         const SizedBox(height: 20.0),
         TextField(
           controller: _passwordController,
           obscureText: true,
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
             labelText: 'Contraseña',
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            prefixIcon: const Icon(Icons.lock),
           ),
         ),
         const SizedBox(height: 20.0),
@@ -91,6 +99,9 @@ class _LoginFormState extends State<LoginForm> {
             ? const CircularProgressIndicator()
             : ElevatedButton(
                 onPressed: _login,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green,
+                ),
                 child: const Text('Iniciar sesión'),
               ),
         if (_errorMessage.isNotEmpty)

@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 
-class ItemWidget extends StatelessWidget {
+class ItemWidget extends StatefulWidget {
   final dynamic item;
 
-  const ItemWidget({super.key, required this.item});
+  const ItemWidget({Key? key, required this.item});
+
+  @override
+  _ItemWidgetState createState() => _ItemWidgetState();
+}
+
+class _ItemWidgetState extends State<ItemWidget> {
+  bool isFavorite = false;
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +19,7 @@ class ItemWidget extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey),
-        borderRadius: BorderRadius.circular(10),
+        
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -21,9 +28,10 @@ class ItemWidget extends StatelessWidget {
             width: 80,
             height: 80,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+            
+              border: Border.all(color: Colors.grey),
               image: DecorationImage(
-                image: NetworkImage(item['image_url']),
+                image: NetworkImage(widget.item['image_url']),
                 fit: BoxFit.cover,
               ),
             ),
@@ -34,7 +42,7 @@ class ItemWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  item['item_name'],
+                  widget.item['item_name'],
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -42,21 +50,32 @@ class ItemWidget extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  item['seller'],
+                  widget.item['seller'],
                   style: const TextStyle(
                     fontSize: 16,
                   ),
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  item['rating'],
+                  widget.item['rating'].toString(),
                   style: const TextStyle(
                     fontSize: 16,
                   ),
                 )
               ],
             ),
-          )
+          ),
+          IconButton(
+            icon: Icon(
+              isFavorite ? Icons.star : Icons.star_border,
+              color: isFavorite ? Colors.yellow : Colors.black,
+            ),
+            onPressed: () {
+              setState(() {
+                isFavorite = !isFavorite;
+              });
+            },
+          ),
         ],
       ),
     );
