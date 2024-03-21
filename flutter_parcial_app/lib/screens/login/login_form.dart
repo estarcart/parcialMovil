@@ -24,7 +24,7 @@ class _LoginFormState extends State<LoginForm> {
     final String username = _usernameController.text.trim();
     final String password = _passwordController.text.trim();
 
-    const String apiUrl = 'http://192.168.128.5:3000/login';
+    const String apiUrl = 'http://10.0.2.2:3000/login';
 
     try {
       final response = await http.post(

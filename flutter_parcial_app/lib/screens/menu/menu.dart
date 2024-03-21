@@ -25,7 +25,7 @@ class _WelcomeMenuPageState extends State<WelcomeMenuPage> {
       _isLoading = true;
     });
 
-    const String apiUrl = 'http://192.168.128.5:3000/items';
+    const String apiUrl = 'http://10.0.2.2:3000/items';
 
     try {
       final prefs = await SharedPreferences.getInstance();
